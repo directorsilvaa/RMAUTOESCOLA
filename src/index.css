@@ -2,59 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@keyframes typingSlow {
-  from { width: 0 }
-  to { width: 100% }
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
 }
 
-@keyframes blink {
-  50% { border-color: transparent }
+/* Animated background */
+.animated-bg {
+  background: linear-gradient(-45deg, #1a1c20, #2d3748, #1a365d, #702459);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
-.typing-animation {
-  display: inline-block;
-  overflow: hidden;
-  border-right: 3px solid #dc2626;
-  white-space: nowrap;
-  animation: 
-    typing 2s steps(40, end),
-    blink .75s step-end infinite;
+.animated-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.1;
 }
 
-.typing-animation-slow {
-  display: inline-block;
-  overflow: hidden;
-  border-right: 3px solid #dc2626;
-  white-space: nowrap;
-  opacity: 0;
-  animation: 
-    typingSlow 2s steps(30, end) forwards,
-    blink .75s step-end infinite;
-  animation-delay: 0.5s;
-}
-
-.fade-in-up {
-  animation: fadeInUp 1s ease-out;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Gradient animations */
-@keyframes gradientFlow {
+@keyframes gradient {
   0% {
     background-position: 0% 50%;
   }
@@ -66,36 +49,18 @@
   }
 }
 
-/* Enhanced background patterns */
-.bg-pattern {
-  background-image: 
-    radial-gradient(circle at 50% 50%, rgba(220, 38, 38, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(220, 38, 38, 0.2) 0%, transparent 30%);
-  animation: gradientFlow 15s ease infinite;
-  background-size: 200% 200%;
-}
-
-/* Shimmer animation */
-@keyframes shimmer {
-  0% {
-    background-position: -1000px 0;
-  }
-  100% {
-    background-position: 1000px 0;
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .animated-bg {
+    background-size: 200% 200%;
   }
 }
 
-.animate-shimmer {
-  animation: shimmer 2s infinite linear;
-  background: linear-gradient(to right, #2a2a2a 4%, #3a3a3a 25%, #2a2a2a 36%);
-  background-size: 1000px 100%;
-}
-
-/* Card hover effects */
-.card-zoom {
-  @apply transition-all duration-300 ease-in-out;
-}
-
-.card-zoom:hover {
-  @apply transform scale-105;
+/* Improve touch targets on mobile */
+@media (max-width: 640px) {
+  button, 
+  a {
+    min-height: 44px;
+    min-width: 44px;
+  }
 }
