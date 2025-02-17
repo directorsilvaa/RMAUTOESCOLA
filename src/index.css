@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes typingSlow {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  50% { border-color: transparent }
+}
+
+.typing-animation {
+  display: inline-block;
+  overflow: hidden;
+  border-right: 3px solid #dc2626;
+  white-space: nowrap;
+  animation: 
+    typing 2s steps(40, end),
+    blink .75s step-end infinite;
+}
+
+.typing-animation-slow {
+  display: inline-block;
+  overflow: hidden;
+  border-right: 3px solid #dc2626;
+  white-space: nowrap;
+  opacity: 0;
+  animation: 
+    typingSlow 2s steps(30, end) forwards,
+    blink .75s step-end infinite;
+  animation-delay: 0.5s;
+}
+
+.fade-in-up {
+  animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Gradient animations */
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Enhanced background patterns */
+.bg-pattern {
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(220, 38, 38, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(220, 38, 38, 0.2) 0%, transparent 30%);
+  animation: gradientFlow 15s ease infinite;
+  background-size: 200% 200%;
+}
+
+/* Shimmer animation */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite linear;
+  background: linear-gradient(to right, #2a2a2a 4%, #3a3a3a 25%, #2a2a2a 36%);
+  background-size: 1000px 100%;
+}
+
+/* Card hover effects */
+.card-zoom {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+.card-zoom:hover {
+  @apply transform scale-105;
+}
